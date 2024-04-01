@@ -32,16 +32,22 @@ import Pages500 from "../pages/Utility/pages-500";
 import NewBusiness from "../components/Buisiness/NewBusiness";
 import ListBusiness from "../components/Buisiness/ListBusiness";
 import Individual from '../components/Buisiness/Individual'
+//Transactions
+import ListTransactions from "../components/Transactions/ListTransactions";
+import SelectBusiness from "../components/Transactions/SelectBusiness"
 
 
 const authProtectedRoutes = [
-  //Business}
+  //Main-dashboard
+  { path: "/dashboard", component: <Dashboard /> },
+  { path: "/", exact: true, component: <Navigate to="/dashboard" /> },
+  //Business
   {path: "/new-business", component: <NewBusiness />},
   {path: "/list-business", component: <ListBusiness/>},
   {path: "/individual-business", component: <Individual/>},
-
-    { path: "/dashboard", component: <Dashboard /> },
-  { path: "/", exact: true, component: <Navigate to="/dashboard" /> },
+  //Transcations
+  {path: "/list-transactions", component: <ListTransactions/>},
+  {path: "/select-business", component: <SelectBusiness/>},
 ];
 
 const publicRoutes = [

@@ -172,7 +172,13 @@ const SidebarContent = (props) => {
                 
               </ul>
             </li>
-            
+            <li>
+            <Link to="/select-business">
+                <i className="bx bx-transfer-alt"></i>
+                <span>{props.t("Transactions")}</span>
+              </Link>
+
+            </li>
             
           </ul>
         </div>
