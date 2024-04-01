@@ -66,9 +66,9 @@ const BusinessDetailsDashboard = () => {
   
             <div><h4>WhatsApp Details</h4></div>
 
-            <div style={{fontSize:'10px', height:'20px', width:'60px'}} className='bg-success rounded d-flex align-items-center justify-content-center' >Added</div>
+            <div style={{fontSize:'10px', height:'20px', width:'60px', color:'white'}} className='bg-success rounded d-flex align-items-center justify-content-center' >Added</div>
             
-            <div style={{fontSize:'10px', height:'20px' , width:'60px'}} className='bg-danger rounded d-flex align-items-center justify-content-center ms-2' >Pending</div>
+            <div style={{fontSize:'10px', height:'20px' , width:'60px' , color:'white'}} className='bg-danger rounded d-flex align-items-center justify-content-center ms-2' >Pending</div>
 
           </div>
         <Table style={{border:'0'}} className='mt-3'>
@@ -94,9 +94,9 @@ const BusinessDetailsDashboard = () => {
   
             <div><h4>GST Details</h4></div>
 
-            <div style={{fontSize:'10px', height:'20px', width:'60px'}} className='bg-success rounded d-flex align-items-center justify-content-center' >Added</div>
+            <div style={{fontSize:'10px', height:'20px', width:'60px' , color:'white'}} className='bg-success rounded d-flex align-items-center justify-content-center' >Added</div>
             
-            <div style={{fontSize:'10px', height:'20px' , width:'60px'}} className='bg-danger rounded d-flex align-items-center justify-content-center ms-2' >Pending</div>
+            <div style={{fontSize:'10px', height:'20px' , width:'60px' , color:'white'}} className='bg-danger rounded d-flex align-items-center justify-content-center ms-2' >Pending</div>
 
           </div>
         <Table style={{border:'0'}} className='mt-3'>
