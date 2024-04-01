@@ -7,14 +7,8 @@ import { UncontrolledTooltip,Button } from 'reactstrap'
 
 
 const DatatableTables = () => {
-    // const [modal1, setModal1] = useState(false);
-    // const toggleViewModal = () => setModal1(!modal1);
-
-    // const [transaction, setTransaction] = useState("")
-
     const columns = useMemo(
         () => [
-
             {
                 header: 'Business Name',
                 accessorKey: 'position',
@@ -64,12 +58,7 @@ const DatatableTables = () => {
                   );
                 },
               },
-            // {
-            //     header: 'Action',
-            //     accessorKey: 'salary',
-            //     enableColumnFilter: false,
-            //     enableSorting: true,
-            // },
+            
             {
                 header: 'Action',
                 accessorKey: 'action',
@@ -159,7 +148,7 @@ const DatatableTables = () => {
     return (
         <div className="page-content">
             <div className="container-fluid">
-                <Breadcrumbs title="Tables" breadcrumbItem="Data Tables" />
+                <Breadcrumbs title="Business" breadcrumbItem="List Business" />
                 <TableContainer
                     columns={columns}
                     data={data || []}
@@ -181,3 +170,5 @@ DatatableTables.propTypes = {
 
 
 export default DatatableTables
+
+
