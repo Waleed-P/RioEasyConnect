@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import withRouter from "../../components/Common/withRouter";
 
 //redux
@@ -32,7 +32,33 @@ import profile from "../../assets/images/profile-img.png";
 import logo from "../../assets/images/logo.svg";
 import lightlogo from "../../assets/images/logo-light.svg";
 
+
 const Login = (props) => {
+  const [username,setUser] = useState("")
+  const [email,setEmail] = useState("")
+  const [password,setPassword] = useState("")
+  const navigate = useNavigate();
+  //Login function
+  async function logUser(){
+    // const history = useHistory();
+    const formData = new URLSearchParams();
+    formData.append('admin_email', email);
+    formData.append('admin_password', password);
+    
+    let result =await fetch("http://biz.rioeasyconnect.com/api/admin/admin_login",{
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formData
+        })
+      
+    const JsonResponse = await result.json()
+    const token = JsonResponse.data.token 
+    localStorage.setItem('token', token)
+    navigate("/dashboard");
+  }
+
   //meta title
   document.title = "Login | Skote - Vite React Admin & Dashboard Template";
   const dispatch = useDispatch();
@@ -42,8 +68,8 @@ const Login = (props) => {
     enableReinitialize: true,
 
     initialValues: {
-      email: "admin@themesbrand.com" || "",
-      password: "123456" || "",
+      email: "admin" || "",
+      password: "admin" || "",
     },
     validationSchema: Yup.object({
       email: Yup.string().required("Please Enter Your Email"),
@@ -137,14 +163,16 @@ const Login = (props) => {
                     >
                       {error ? <Alert color="danger">{error}</Alert> : null}
 
-                      <div className="mb-3">
+                      {/* <div className="mb-3">
                         <Label className="form-label">Email</Label>
                         <Input
                           name="email"
                           className="form-control"
                           placeholder="Enter email"
                           type="email"
-                          onChange={validation.handleChange}
+                          // onChange={validation.handleChange}
+                          // onChange={(e)=>setUser(e.target.value)}
+                          onChange={(e)=>setEmail(e.target.value)}
                           onBlur={validation.handleBlur}
                           value={validation.values.email || ""}
                           invalid={
@@ -158,9 +186,17 @@ const Login = (props) => {
                             {validation.errors.email}
                           </FormFeedback>
                         ) : null}
-                      </div>
+                      </div> */}
+                      
+                      <input type="email" placeholder="email"
+                      onChange={(e)=>setEmail(e.target.value)}
+                      />
+                      <input type="password" placeholder="password"
+                      onChange={(e)=>setPassword(e.target.value)}
+                      />
 
-                      <div className="mb-3">
+
+                      {/* <div className="mb-3">
                         <Label className="form-label">Password</Label>
                         <Input
                           name="password"
@@ -168,7 +204,8 @@ const Login = (props) => {
                           value={validation.values.password || ""}
                           type="password"
                           placeholder="Enter Password"
-                          onChange={validation.handleChange}
+                          //onChange={validation.handleChange}
+                          onChange={(e)=>setPassword(e.target.value)}
                           onBlur={validation.handleBlur}
                           invalid={
                             validation.touched.password &&
@@ -183,7 +220,7 @@ const Login = (props) => {
                             {validation.errors.password}
                           </FormFeedback>
                         ) : null}
-                      </div>
+                      </div> */}
 
                       <div className="form-check">
                         <input
@@ -203,6 +240,7 @@ const Login = (props) => {
                         <button
                           className="btn btn-primary btn-block"
                           type="submit"
+                          onClick={logUser}
                         >
                           Log In
                         </button>

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo,useState,useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Breadcrumbs from '../Common/Breadcrumb'
@@ -7,6 +7,39 @@ import { UncontrolledTooltip,Button } from 'reactstrap'
 
 
 const DatatableTables = () => {
+    const [business,setBusiness] = useState("")
+
+    //fetching businesses
+    useEffect(() => {
+        const fetchBusiness = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                console.log(token)
+                const headers = {
+                    'Authorization': `Bearer ${token}`,
+                };
+                const response = await fetch("https://biz.rioeasyconnect.com/api/admin/list_entities",{
+                    method: 'GET', 
+                    headers: headers
+                });
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                const jsonData = await response.json();
+                setBusiness(jsonData);
+                console.log(jsonData);
+            } catch (error) {
+                console.error("Error fetching business data:", error);
+            }
+        };
+    
+        fetchBusiness();
+    
+        // Add an empty dependency array to ensure this effect runs only once when the component mounts
+    }, []);
+    
+      
+
     const columns = useMemo(
         () => [
             {
