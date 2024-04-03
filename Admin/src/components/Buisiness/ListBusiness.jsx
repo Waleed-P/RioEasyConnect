@@ -8,7 +8,7 @@ import { UncontrolledTooltip,Button } from 'reactstrap'
 
 const DatatableTables = () => {
     const [business,setBusiness] = useState("")
-
+    const [name,setName] = useState("RAM")
     //fetching businesses
     useEffect(() => {
         const fetchBusiness = async () => {
@@ -26,19 +26,19 @@ const DatatableTables = () => {
                     throw new Error("Network response was not ok");
                 }
                 const jsonData = await response.json();
-                setBusiness(jsonData);
-                console.log(jsonData);
+                setBusiness(jsonData.data.data);
+                // console.log(jsonData);
             } catch (error) {
                 console.error("Error fetching business data:", error);
             }
         };
     
         fetchBusiness();
-    
+        
         // Add an empty dependency array to ensure this effect runs only once when the component mounts
     }, []);
     
-      
+      console.log(business)
 
     const columns = useMemo(
         () => [
@@ -132,49 +132,55 @@ const DatatableTables = () => {
         []
     );
 
-    const data = [
-        {
-            name: "Airi Satou",
-            position: "Accountant",
-            age: 33,
-            office: "Tokyo",
-            startDate: "2008/11/28",
+        const data = [
+            {
+                name: `${name}`,
+                position: "Accountant",
+                age: 33,
+                office: "Tokyo",
+                startDate: "2008/11/28",
 
-        },
-        {
-            name: "Cedric Kelly",
-            position: "Senior Javascript Developer",
-            age: 22,
-            office: "Edinburgh",
-            startDate: "2012/03/29",
+            },
+            {
+                name: "Cedric Kelly",
+                position: "Senior Javascript Developer",
+                age: 22,
+                office: "Edinburgh",
+                startDate: "2012/03/29",
 
-        },
-        {
-            name: "Ashton Cox",
-            position: "Junior Technical Author",
-            age: 66,
-            office: "San Francisco",
-            startDate: "2009/01/12",
+            },
+            {
+                name: "Ashton Cox",
+                position: "Junior Technical Author",
+                age: 66,
+                office: "San Francisco",
+                startDate: "2009/01/12",
 
-        },
-        {
-            name: "Garrett Winters",
-            position: "Accountant",
-            age: 63,
-            office: "Tokyo",
-            startDate: "2011/07/25",
+            },
+            {
+                name: "Garrett Winters",
+                position: "Accountant",
+                age: 63,
+                office: "Tokyo",
+                startDate: "2011/07/25",
 
-        },
-        {
-            name: "Tiger Nixon",
-            position: "System Architect",
-            age: 61,
-            office: "Edinburgh",
-            startDate: "2011/04/25",
+            },
+            {
+                name: "Tiger Nixon",
+                position: "System Architect",
+                age: 61,
+                office: "Edinburgh",
+                startDate: "2011/04/25",
 
-        },
-    ];
-
+            },
+        ];
+        // const data = response.data.map(item => ({
+        //     name: item.organization_name,
+        //     position: item.location, // Just for example, you can use any other field here
+        //     age: item.booking_cost, // Just for example, you can use any other field here
+        //     office: item.address, // Just for example, you can use any other field here
+        //     startDate: item.created_at // Just for example, you can use any other field here
+        // }));
     //meta title
     document.title = "Data Tables | Skote - Vite React Admin & Dashboard Template";
 
